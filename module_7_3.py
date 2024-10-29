@@ -1,3 +1,5 @@
+import string
+
 class WordsFinder:
     file_names = []
     words_list = []
@@ -12,6 +14,7 @@ class WordsFinder:
         for i in self.file_names:
             with open(i) as file:
                 for i in file:
+                    i = i.translate(str.maketrans('', '', string.punctuation))
                     self.words_list.append(i.lower().split())
         self.new_dict = dict(zip(self.file_names, self.words_list))
         return self.new_dict
@@ -52,7 +55,7 @@ class WordsFinder:
         return dict_list
 
 w1 = WordsFinder('file1.txt', 'file2.txt', 'file3.txt')
-#print(w1.file_names)
+
 print(w1.get_all_words())
 print(w1.words_list)
 print(w1.find('text'))
