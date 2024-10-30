@@ -13,9 +13,9 @@ class WordsFinder:
     def get_all_words(self):
         for i in self.file_names:
             with open(i) as file:
-                for i in file:
-                    i = i.translate(str.maketrans('', '', string.punctuation))
-                    self.words_list.append(i.lower().split())
+                x = str(file.readlines())
+                x = x.translate(str.maketrans('', '', string.punctuation))
+                self.words_list.append(x.lower().split())
         self.new_dict = dict(zip(self.file_names, self.words_list))
         return self.new_dict
 
